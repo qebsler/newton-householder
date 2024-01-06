@@ -1,0 +1,26 @@
+set terminal pdf
+set output "data/plot.pdf"
+
+set xrange [-1:1]
+set yrange [-1:1]
+set size ratio 1
+set tics nomirror
+set palette rgb 33,13,10
+
+set multiplot layout 1,2 rowsfirst title "Bassins d'attractions"
+set title "Newton"
+unset colorbox
+plot "data/newton.dat" u 1:2:3 w image t "N"
+set title "Householder"
+plot "data/householder.dat" u 1:2:3 w image t "H"
+
+unset multiplot
+
+set multiplot layout 1, 2 rowsfirst title "Vitesse de convergence (en nombre d'itérations)"
+set palette rgb 7,5,15
+set cbrange [0: 70]
+set title "Newton"
+plot "data/newton.dat" u 1:2:4 w image t "N"
+set title "Householder"
+plot "data/householder.dat" u 1:2:4 w image t "H"
+unset multiplot
